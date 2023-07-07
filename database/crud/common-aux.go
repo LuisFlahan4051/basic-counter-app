@@ -185,7 +185,10 @@ func getDataFields(fieldsSlice []string, fieldsValuesMap map[string]interface{})
 
 		regularExpresion := regexp.MustCompile(`\d{4}-\d{2}-\d{2}`)
 		if regularExpresion.MatchString(valueString) {
-			date, _ := time.Parse("2006-01-02 15:04:05", strings.Split(valueString, " -")[0])
+			date, _ := time.Parse("2006-01-02 15:04:05", strings.Split(valueString, " +")[0])
+			if date.IsZero() {
+				date, _ = time.Parse("2006-01-02 15:04:05", strings.Split(valueString, " -")[0])
+			}
 
 			data = append(data, date)
 		} else {
@@ -290,6 +293,15 @@ func IsDeleted(table string, id uint) bool {
 func DeleteFromTableById(tableName string, id uint) error {
 	db := database.GetConnection(database.DATABASE_NAME)
 	defer db.Close()
+
+	if true {
+		query := fmt.Sprintf("DELETE FROM %s WHERE id = $1", tableName)
+		_, err := db.Exec(query, id)
+		if err != nil {
+			return fmt.Errorf("can't execute the %s query ERROR: %s", tableName, err.Error())
+		}
+		return nil
+	}
 
 	if IsDeleted(tableName, id) {
 		return errors.New("already deleted")

@@ -1,7 +1,6 @@
 package crud
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -43,7 +42,7 @@ func NewExpense(expense *Expense) error {
 	return nil
 }
 
-func GetExpenses(root bool) ([]Expense, error) {
+func GetExpenses(sinceFilter *time.Time, toFilter *time.Time, typeFilter *string) ([]Expense, error) {
 	db := database.GetConnection(database.DATABASE_NAME)
 	defer db.Close()
 
@@ -53,8 +52,33 @@ func GetExpenses(root bool) ([]Expense, error) {
 		return nil, fmt.Errorf("can't get the query %s ERROR: %s", tableName, err.Error())
 	}
 
-	if !root {
-		query += " WHERE deleted_at IS NULL"
+	whereIsSet := false
+	if strings.Compare(*typeFilter, "") != 0 {
+		query = fmt.Sprintf("%s WHERE type = '%s'", query, *typeFilter)
+		whereIsSet = true
+	}
+
+	if sinceFilter != nil {
+		if toFilter == nil {
+			toFilter = &time.Time{}
+		}
+
+		//Verify intervals and order
+		if sinceFilter.After(*toFilter) && !toFilter.IsZero() {
+			sinceFilter, toFilter = toFilter, sinceFilter
+		}
+
+		//Set To to today hour 23:59:59 when Since exists and is unknown
+		if toFilter.IsZero() && !sinceFilter.IsZero() {
+			today, _ := time.Parse("2006-01-02", time.Now().Format("2006-01-02"))
+			todayPtr := today.Add(24 * time.Hour)
+			toFilter = &todayPtr
+		}
+		if whereIsSet {
+			query = fmt.Sprintf("%s AND created_at BETWEEN '%s' AND '%s' ORDER BY created_at DESC", query, sinceFilter, toFilter)
+		} else {
+			query = fmt.Sprintf("%s WHERE created_at BETWEEN '%s' AND '%s' ORDER BY created_at DESC", query, sinceFilter, toFilter)
+		}
 	}
 
 	rows, err := db.Query(query)
@@ -125,13 +149,9 @@ func UpdateExpense(updatingExpense *Expense) error {
 
 	tableName := "expenses"
 
-	if IsDeleted(tableName, updatingExpense.Id) {
-		return errors.New("regist is deleted")
-	}
-
 	query, data, err := GetQuery(tableName, *updatingExpense, "UPDATE", true)
 	querySplit := strings.Split(query, "RETURNING") // Separate "UPDATE () SET () WHERE id = ()" + <stringToIntroduce> + "()"
-	query = fmt.Sprintf("%s AND deleted_at IS NULL RETURNING %s", querySplit[0], querySplit[1])
+	query = fmt.Sprintf("%s RETURNING %s", querySplit[0], querySplit[1])
 	if err != nil {
 		return fmt.Errorf("can't get the query %s ERROR: %s", tableName, err.Error())
 	}

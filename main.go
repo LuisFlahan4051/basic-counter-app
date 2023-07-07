@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/LuisFlahan4051/basic-counter-app/database"
+	routesExpenses "github.com/LuisFlahan4051/basic-counter-app/routes/expenses"
+	routesIncomes "github.com/LuisFlahan4051/basic-counter-app/routes/incomes"
 	"github.com/gorilla/mux"
 )
 
@@ -19,6 +21,8 @@ func main() {
 
 	router := mux.NewRouter()
 
+	routesIncomes.SetIncomesHandleActions(router)
+	routesExpenses.SetExpensesHandleActions(router)
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {})
 
 	// RUN SERVER

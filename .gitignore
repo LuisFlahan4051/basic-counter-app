@@ -1,3 +1,5 @@
+*.exe
+tmp
 # Logs
 front-devel-react/logs
 front-devel-react/*.log
