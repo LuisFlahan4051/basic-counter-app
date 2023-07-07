@@ -1,0 +1,44 @@
+@import '../../Main-colors.scss';
+
+//USE data-not-found-theme for a specific theme
+//USE data-global-theme for a global theme
+
+[data-not-found-theme='dark'] {
+    --color-black-2: #101010;
+    --not-found-background: var(--color-black-2);
+    //--not-found-font: serif;
+}
+
+[data-not-found-theme='light'] {
+    --color-white-2: #F8F8F8;
+    --not-found-background: var(--color-white-2);
+    //--not-found-font: serif;
+}
+
+@font-face {
+    font-family: 'armalite_rifle';
+    src: url('../../fonts/armalite_rifle.ttf') format('truetype');
+}
+// --------------------------------------------
+
+
+.NotFound {
+    width: 100%;
+    height: 100%;
+    background-color: var(--not-found-background);
+    color: #FC6706;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'armalite_rifle', serif;
+    text-align: center;
+}
+
+.NotFound_msg {
+    padding-top: 2rem;
+    font-size: 3rem;
+}
+
+.NotFound_img {
+    height: 60%;
+}

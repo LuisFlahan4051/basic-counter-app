@@ -1,0 +1,66 @@
+@import '../../Main-colors.scss';
+
+.display_home{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+//--------------------------
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--home-display-background);
+}
+
+.background__icon{
+    width: 25%;
+    opacity: 0.5;
+}
+//-------------------------------
+.Home{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 10rem auto;
+    grid-template-rows: 5rem 2rem auto 1.7rem; 
+    grid-template-areas: 
+    "header header"
+    "navbar directory"
+    "navbar workspace"
+    "footer footer";
+}
+
+.display_home__header{
+    height: 100%;
+    width: 100%;
+    grid-area: header;
+}
+
+.display_home__navbar{
+    width: 100%;
+    height: 100%;
+    grid-area: navbar;
+}
+
+.display_home__directory{
+    width: 100%;
+    height: 100%;
+    grid-area: directory;
+}
+
+.display_home__workspace{
+    height: 100%;
+    width: 100%;
+    grid-area: workspace;
+}
+
+.display_home__footer{
+    height: 100%;
+    width: 100%;
+    grid-area: footer;
+}

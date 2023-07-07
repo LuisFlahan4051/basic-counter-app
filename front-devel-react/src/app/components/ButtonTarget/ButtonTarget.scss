@@ -1,0 +1,77 @@
+@import '../../Main-colors.scss';
+
+//USE data-button-target-theme for a specific theme
+//USE data-global-theme for a global theme
+
+[data-button-target-theme='dark'],[data-button-target-theme='light']{
+    --color-white-6: #D0D0D0;
+    --color-white-5: #E0E0E0;
+    --color-white-4: #E8E8E8;
+    --color-white-3: #F0F0F0;
+    --translucid-color: #e0e0e000;
+    --color-black-7-gray: #383838;
+    --color-black-6: #303030;
+    --color-black-2: #101010;
+}
+
+[data-button-target-theme='light'] {
+    --button-target-background: var(--color-white-5);
+    --button-target-border: var(--color-white-4);
+    --button-target-shadow: var(--color-white-6);
+    --button-target-text: var(--color-black-2);
+}
+[data-button-target-theme='dark']{
+    --button-target-background:var(--color-black-7-gray);
+    --button-target-border: var(--translucid-color);
+    --button-target-shadow: var(--translucid-color);
+    --button-target-text: var(--color-white-5);
+}
+
+
+.ButtonTarget{
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: var(--button-target-border);
+    background-color: var(--button-target-background);
+    color: var(--button-target-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: target-nohover-animation;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+}
+
+.ButtonTarget:hover {
+    cursor: pointer;
+    animation-name: target-hover-animation;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes target-hover-animation {
+    to {
+        transform: scale(1.05);
+        box-shadow: 0px 5px 10px var(--button-target-shadow);
+    }
+}
+
+@keyframes target-nohover-animation {
+    from{
+        transform: scale(1.05);
+        box-shadow: 0px 5px 10px var(--button-target-shadow);
+    }
+    to {
+        transform: scale(1);
+        box-shadow: 0px 0px 0px var(--button-target-shadow);
+    }
+}
+
+.ButtonTarget_icon {
+    width: 60%;
+}

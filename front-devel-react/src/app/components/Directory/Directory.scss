@@ -1,0 +1,33 @@
+@import '../../Main-colors.scss';
+
+.Directory{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+}
+
+.directory__location{
+    display: flex;
+    align-items: center;
+}
+
+.location_row{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: var(--directory-link);
+}
+
+.location_name{
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--directory-link);
+    font-family: var(--directory-general-font);
+    font-size: 1.1rem;
+}
+
+.location_name:hover{
+    color: var(--directory-link-hover);
+}

@@ -1,0 +1,164 @@
+@import '../../Main-colors.scss';
+
+.users__finder {
+    grid-area: findUsers;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+$width-content: 90%;
+
+$margin-find-username: 20px;
+$heigth-find-username: 40px;
+
+.finder_inputUsername {
+    margin-top: $margin-find-username;
+    border-radius: 7px;
+    background-color: var(--color-white-1);
+    width: $width-content;
+    height: $heigth-find-username;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+$width-username-button: 45px;
+$width-username-buttons: $width-username-button*2 + 5px;
+
+.inputUsername_input {
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    background-color: transparent;
+    width: calc(95% - $width-username-buttons);
+    height: 100%;
+    padding: 0%;
+    padding-left: 10px;
+}
+
+.inputUsername_buttons {
+    width: $width-username-buttons;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.inputUsername_buttons button {
+    background-color: var(--color-white-3);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: $width-username-button;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inputUsername_buttons button:hover {
+    background-color: var(--color-white-5);
+}
+.back_img{
+    height: 75%;   
+}
+.next_img{
+    height: 75%;   
+    transform: rotate(180deg);
+}
+
+
+$margin-find-selector: 20px;
+
+.finder_selector {
+    background-color: var(--color-black-7-gray);
+    width: $width-content;
+    margin-top: $margin-find-selector;
+    margin-bottom: $margin-find-selector;
+    height: calc(100% - $heigth-find-username + $margin-find-username - 2*$margin-find-selector);
+    border-radius: 7px;
+
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+        "UsersDisplay UsersOptions";
+}
+
+.selector_users {
+    grid-area: UsersDisplay;
+    position: relative;
+}
+
+.users_buttons {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100% - 10px);
+    width: 100%;
+    position: absolute;
+    overflow-y: auto;
+}
+
+
+.users_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 9.5rem;
+    width: 7rem;
+    margin-top: 10px;
+    margin-left: 10px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+.users_button:hover {
+    border-radius: 10px;
+    background-color: #0000001e;
+}
+
+.users_button img {
+    margin-top: 5px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.users_button p {
+    color: white;
+    text-align: center;
+}
+
+.selector_options {
+    grid-area: UsersOptions;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option {
+    margin-top: 10px;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: var(--color-black-6);
+}
+.option:hover {
+    background-color: var(--color-black-8-gray);
+    cursor: pointer;
+}
+.option_icon{
+    height: 50px;
+    width: 50px;
+}

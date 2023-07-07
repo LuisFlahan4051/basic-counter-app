@@ -1,0 +1,26 @@
+# Logs
+front-devel-react/logs
+front-devel-react/*.log
+front-devel-react/npm-debug.log*
+front-devel-react/yarn-debug.log*
+front-devel-react/yarn-error.log*
+front-devel-react/pnpm-debug.log*
+front-devel-react/lerna-debug.log*
+
+front-devel-react/node_modules
+front-devel-react/dist
+front-devel-react/dist-ssr
+front-devel-react/*.local
+
+# Editor directories and files
+.vscode/*
+front-devel-react/.vscode/*
+!.vscode/extensions.json
+front-devel-react/!.vscode/extensions.json
+front-devel-react/.idea
+front-devel-react/.DS_Store
+front-devel-react/*.suo
+front-devel-react/*.ntvs*
+front-devel-react/*.njsproj
+front-devel-react/*.sln
+front-devel-react/*.sw?

@@ -1,0 +1,42 @@
+@import '../../Main-colors.scss';
+
+$btn-circle-size: 100px;
+[data-button-circle-theme='dark'],[data-button-circle-theme='light']{
+    --color-black-3: #181818;
+    --color-white-1: #FFFFFF;
+    --color-white-3: #F0F0F0;
+    --color-white-5: #E0E0E0;
+    --translucid-color: #e0e0e000;
+}
+
+[data-button-circle-theme='dark']{
+    --btn-circle-background: var(--color-black-3);
+    --worspace-shadow: var(--translucid-color);
+}
+[data-button-circle-theme='light']{
+    --btn-circle-background: var(--color-white-1);
+    --worspace-shadow: var(--color-white-5);
+}
+
+.btn-circle {
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: calc($btn-circle-size/2) + 5;
+    width: $btn-circle-size;
+    height: $btn-circle-size;
+    border-style: solid;
+    border-width: calc($btn-circle-size*4/100);
+    background-color: var(--btn-circle-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-circle:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 6px var(--workspace-shadow);
+}
+
+.btn-circle_icon {
+    width: 70%;
+}

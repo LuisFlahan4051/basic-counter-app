@@ -1,0 +1,150 @@
+/* ----------------COMON COLORS -----------------*/
+:root{
+    --color-green-cake: #26FF8B;
+    --color-green-primary: #00FF4C;
+    --color-green-menta: #6BAEA7;
+    --color-cyan-primary: #00FFF0;
+    --color-blue-night: #407BFF;
+    --color-blue-night-2: #6897fd;
+    --color-purple: #7040C4;
+    --color-magent: #BD31F8;
+    --color-pink-primary: #FF26A5;
+    --color-fire: #FC6706;
+    --color-fire-2: #c44e00;
+    --color-fire-3: #993d00;
+    --color-red-cake: #ec3636;
+    --color-red-cake-2: #f55656;
+    --translucid-color: #e0e0e000;
+    // >>> Black Scale
+    --color-black-1: #000000;
+    --color-black-2: #101010;
+    --color-black-3: #181818;
+    --color-black-4: #202020;
+    --color-black-5: #282828;
+    --color-black-6: #303030;
+    --color-black-7-gray: #383838;
+    --color-black-8-gray: #404040;
+    --color-black-9-gray: #505050;
+    --color-black-10-gray: #606060;
+    // >>> Wite Scale
+    --color-white-11-gray: #707070;
+    --color-white-10-gray: #808080;
+    --color-white-9-gray: #909090;
+    --color-white-8-gray: #B0B0B0;
+    --color-white-7: #C0C0C0;
+    --color-white-6: #D0D0D0;
+    --color-white-5: #E0E0E0;
+    --color-white-4: #E8E8E8;
+    --color-white-3: #F0F0F0;
+    --color-white-2: #F8F8F8;
+    --color-white-1: #FFFFFF;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+//font-family: 'Fredericka the Great', cursive;
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+//font-family: 'Libre Baskerville',serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&display=swap');
+//font-family: 'Noto Serif',serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@1,400;1,500;1,600;1,700&display=swap');
+//font-family: 'Ibarra Real Nova',serif;
+
+/* ----------------- ELEMENTS -----------------*/
+:root{
+    // --------------- General -----------------
+    // >>> FONTS
+    --normal-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+    //Login
+    --login-border: #d6d6d6;
+    --login-shadow: var(--color-white-5);
+    --login-input-selector-hover: #F1F1F1;
+    --login-input-selector-focused: var(--color-white-5);
+    --login-input-background: var(--color-white-1);
+    --login-input-label: var(--color-fire);
+    --login-input-border: var(--color-fire);
+    --login-emphasis-color: var(--color-fire);
+    --login-emphasis-color-2: var(--color-fire-2);
+    --login-emphasis-color-3: var(--color-fire-3);
+    --login-general-font: var(--normal-font);
+    --login-input-font: var(--normal-font);
+    
+    //Alert
+    --alert-button-ok: var(--color-fire);
+    --alert-button-ok-hover: #ff8839;
+    --alert-shadow: var(--color-white-5);
+    --alert-button-acept: var(--color-blue-night);
+    --alert-button-acept-hover: var(--color-blue-night-2);
+    --alert-button-cancel: var(--color-red-cake);
+    --alert-button-cancel-hover: var(--color-red-cake-2);
+    //Workspace
+    --worspace-shadow: var(--color-white-5);
+    //Directory
+    --directory-general-font: serif,'Ibarra Real Nova';
+
+    // --------------- Light ----------------
+    
+        //General   
+        --main-body: var(--color-white-2);
+        //Login
+        --login-shadow: var(--color-white-5);
+        --login-target: var(--color-white-4);
+        --login-display-background: var(--main-body);
+        //NotFound
+        --not-found-background: var(--main-body);
+        //Alert
+        --alert-target: var(--color-white-4);
+        --alert-message: var(--color-black-5);
+        //Home
+        --home-display-background: var(--main-body);
+        //Workspace
+        --btn-circle-background: var(--color-white-1);
+        //ButtonTarget
+        --button-target-background: var(--color-white-5);
+        --button-target-border: var(--color-white-4);
+        --button-target-shadow: var(--color-white-6);
+        --button-target-text: var(--color-black-2);
+        //Header
+        --header-background: var(--color-white-4);
+        --header-options-background: var(--color-white-2);
+        --header-options-hover: var(--color-white-4);
+        --header-text: var(--color-black-3);
+}
+
+[data-global-theme='dark']{
+    //General
+    --main-body: var(--color-black-2);
+    //Login
+    --login-shadow: var(--translucid-color);
+    --login-target: var(--color-black-4);
+    --login-display-background: var(--main-body);
+    //NotFound
+    --not-found-background: var(--main-body);
+    //Alert
+    --alert-target: var(--color-black-4);
+    --alert-message: var(--color-white-5);
+    //Home
+    --home-display-background: var(--main-body);
+    //Workspace
+    --btn-circle-background: var(--color-black-3);
+    //ButtonTarget
+    --button-target-background: var(--color-black-7-gray);
+    --button-target-border: var(--translucid-color);
+    --button-target-shadow: var(--translucid-color);
+    --button-target-text: var(--color-white-5);
+    //Header
+    --header-background: var(--color-black-4);
+    --header-options-background: var(--color-white-2);
+    --header-options-hover: var(--color-white-4);
+    --header-text: var(--color-white-3);
+    --directory-link: var(--color-white-9-gray);
+    --directory-link-hover: var(--color-white-4);
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
