@@ -26,3 +26,5 @@ front-devel-react/*.ntvs*
 front-devel-react/*.njsproj
 front-devel-react/*.sln
 front-devel-react/*.sw?
+
+dependencies

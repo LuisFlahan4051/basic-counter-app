@@ -18,6 +18,14 @@ function Home() {
 		)
 	}
 
+	function MainButtons() {
+		return (
+			<div className='mainButtons'>
+				<button className='mainButtons__button'>Button</button>
+			</div>
+		)
+	}
+
 	return (
 		//Main content in home
 		<div className='display_home'>
@@ -25,7 +33,9 @@ function Home() {
 			<Background />
 
 			{/* Main content */}
-			<div className='Home'></div>
+			<div className='Home'>
+				<MainButtons />
+			</div>
 		</div>
 	)
 }
