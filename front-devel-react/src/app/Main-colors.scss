@@ -1,5 +1,7 @@
 /* ----------------COMON COLORS -----------------*/
 :root{
+    --color-green-1: #178538;
+    --color-green-2: #1E9A4A;
     --color-green-cake: #26FF8B;
     --color-green-primary: #00FF4C;
     --color-green-menta: #6BAEA7;
@@ -57,7 +59,7 @@
 :root{
     // --------------- General -----------------
     // >>> FONTS
-    --normal-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    --normal-font: serif ,Cambria, Cochin, Georgia, Times, 'Times New Roman';
     
     //Login
     --login-border: #d6d6d6;
@@ -85,43 +87,12 @@
     --worspace-shadow: var(--color-white-5);
     //Directory
     --directory-general-font: serif,'Ibarra Real Nova';
-
-    // --------------- Light ----------------
-    
-        //General   
-        --main-body: var(--color-white-2);
-        //Login
-        --login-shadow: var(--color-white-5);
-        --login-target: var(--color-white-4);
-        --login-display-background: var(--main-body);
-        //NotFound
-        --not-found-background: var(--main-body);
-        //Alert
-        --alert-target: var(--color-white-4);
-        --alert-message: var(--color-black-5);
-        //Home
-        --home-display-background: var(--main-body);
-        //Workspace
-        --btn-circle-background: var(--color-white-1);
-        //ButtonTarget
-        --button-target-background: var(--color-white-5);
-        --button-target-border: var(--color-white-4);
-        --button-target-shadow: var(--color-white-6);
-        --button-target-text: var(--color-black-2);
-        //Header
-        --header-background: var(--color-white-4);
-        --header-options-background: var(--color-white-2);
-        --header-options-hover: var(--color-white-4);
-        --header-text: var(--color-black-3);
 }
 
 [data-global-theme='dark']{
     //General
     --main-body: var(--color-black-2);
-    //Login
-    --login-shadow: var(--translucid-color);
-    --login-target: var(--color-black-4);
-    --login-display-background: var(--main-body);
+    --content-target-background: var(--color-black-7-gray);
     //NotFound
     --not-found-background: var(--main-body);
     //Alert
@@ -129,6 +100,10 @@
     --alert-message: var(--color-white-5);
     //Home
     --home-display-background: var(--main-body);
+    
+    
+    // --- UNUSED ---
+    /*
     //Workspace
     --btn-circle-background: var(--color-black-3);
     //ButtonTarget
@@ -142,7 +117,7 @@
     --header-options-hover: var(--color-white-4);
     --header-text: var(--color-white-3);
     --directory-link: var(--color-white-9-gray);
-    --directory-link-hover: var(--color-white-4);
+    --directory-link-hover: var(--color-white-4);*/
 }
 
 ::-webkit-scrollbar {

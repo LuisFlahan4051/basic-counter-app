@@ -26,41 +26,56 @@
     height: 100%;
     position: absolute;
     display: grid;
-    grid-template-columns: 10rem auto;
-    grid-template-rows: 5rem 2rem auto 1.7rem; 
+    grid-template-columns: 400px auto;
+    grid-template-rows: 5rem auto auto; 
     grid-template-areas: 
-    "header header"
-    "navbar directory"
-    "navbar workspace"
-    "footer footer";
+    "options options"
+    "inputs table"
+    "inputs graphic"
 }
 
-.display_home__header{
+.display_home__options{
     height: 100%;
     width: 100%;
-    grid-area: header;
+    grid-area: options;
+    display: flex;
+    align-items: center;
 }
 
-.display_home__navbar{
-    width: 100%;
-    height: 100%;
-    grid-area: navbar;
+.options__content{
+    padding-left: 95px;
+    display: flex;
 }
 
-.display_home__directory{
+.display_home__inputs{
     width: 100%;
     height: 100%;
-    grid-area: directory;
+    grid-area: inputs;
 }
 
-.display_home__workspace{
-    height: 100%;
-    width: 100%;
-    grid-area: workspace;
+.inputs__contentTarget{
+    height: 500px;
 }
 
-.display_home__footer{
+.inputs__form{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.display_home__table{
+    width: 100%;
+    height: 100%;
+    grid-area: table;
+}
+
+.display_graphic{
     height: 100%;
     width: 100%;
-    grid-area: footer;
+    grid-area: graphic;
 }

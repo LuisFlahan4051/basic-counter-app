@@ -1,0 +1,52 @@
+.basicButton{
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.5px;
+    
+    margin: 5px;
+    
+    $height: 50px;
+    height: $height;
+    width: 2*$height;
+
+    font-family: var(--normal-font);
+    font-size: 15px;
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: button-nohover-animation;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+}
+
+.basicButton:hover{
+    cursor: pointer;
+    animation-name: button-hover-animation;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes button-hover-animation {
+    to {
+        transform: scale(1.05);
+        //box-shadow: 0px 5px 10px var(--button-button-shadow);
+    }
+}
+
+@keyframes button-nohover-animation {
+    from {
+        transform: scale(1.05);
+        //box-shadow: 0px 5px 10px var(--button-button-shadow);
+    }
+
+    to {
+        transform: scale(1);
+        //box-shadow: 0px 0px 0px var(--button-button-shadow);
+    }
+}
+
+.basicButton_icon {
+    width: 60%;
+}

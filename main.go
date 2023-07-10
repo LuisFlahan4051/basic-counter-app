@@ -12,43 +12,74 @@ import (
 	"github.com/asticode/go-astikit"
 	"github.com/asticode/go-astilectron"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 var (
-	restServerPort *string
-	URLs           []string
-	urlGui         string
-	host           = "http://localhost:"
-	devMode        = true
+	host              = "http://localhost:"
+	restServerPort    *string
+	uiServerPort      *string
+	urlGui            string
+	devMode           *bool
+	uiDevelServerPort *string
+	develHost         *string
 )
+
+// This define the default values of the flags
+func initFlags() {
+	restServerPort = flag.String("restServerPort", "8080", "RestServerPort to use")
+	uiServerPort = flag.String("uiServerPort", "3000", "UiServerPort to use")
+	develHost = flag.String("develHost", "http://127.0.0.1:", "DevelHost to use")
+	uiDevelServerPort = flag.String("uiDevelServerPort", "5173", "UiDevelServerPort to use")
+	devMode = flag.Bool("devMode", false, "DevMode to use")
+	flag.Parse()
+}
 
 func main() {
 	initFlags()
 
 	database.InitDatabaseIfNotExists()
 
-	// Adding multi routes in the same server
+	// Adding multi routes in the same server of the API
 	router := mux.NewRouter()
 	routesIncomes.SetIncomesHandleActions(router)
 	routesExpenses.SetExpensesHandleActions(router)
-	setUIHandleStaticFiles(router, "5173")
 
-	// Running the async server
+	router.Use(cors.New(cors.Options{
+		AllowedOrigins: []string{
+			"http://localhost:8080",
+			*develHost + *uiDevelServerPort,
+		},
+		AllowCredentials: true,
+		Debug:            true,
+	}).Handler)
+
+	fmt.Println("Server API: http://" + host + ":" + *restServerPort + "/")
+	fmt.Println("Server UI: http://" + host + ":" + *uiServerPort + "/")
+
+	// Running the async server for the API
 	go http.ListenAndServe(":"+*restServerPort, router)
 
+	// This run another server for the UI and launch the UI
 	runUI()
 }
-func setUIHandleStaticFiles(router *mux.Router, develPort string) {
-	uiPrefix := "/"
-	urlGui = host + *restServerPort + uiPrefix
-	if develPort != "" && devMode {
-		urlGui = host + develPort + uiPrefix
-	}
-	router.PathPrefix(uiPrefix).Handler(
-		http.StripPrefix(uiPrefix, http.FileServer(http.Dir("./front-devel-react/dist"))),
-	)
+
+func corsConfigure(router *mux.Router) {
+	//Use this for enable all origins of requests
+	//router.Use(cors.AllowAll().Handler)
+
+	//Use this for enable specific origins
+	router.Use(cors.New(cors.Options{
+		AllowedOrigins: []string{
+			"http://localhost:8080",
+			*develHost + *uiDevelServerPort,
+		},
+		AllowCredentials: true,
+		Debug:            true,
+	}).Handler)
 }
 
+// This function needs to be at the end of the main function, because it's a blocking function.
 func runUI() {
 	//App initialization
 	logEntry := log.New(log.Writer(), log.Prefix(), log.Flags())
@@ -63,6 +94,23 @@ func runUI() {
 	}
 	defer app.Close()
 	app.Start()
+
+	//Launch the UI server
+	router := mux.NewRouter()
+	setUIHandleStaticFiles(router)
+	router.Use(cors.New(cors.Options{
+		AllowedOrigins: []string{
+			"http://localhost:8080",
+			*develHost + *uiDevelServerPort,
+		},
+		AllowCredentials: true,
+		Debug:            true,
+	}).Handler)
+	if !*devMode {
+		go http.ListenAndServe(":"+*uiServerPort, router)
+	} else {
+		urlGui = *develHost + *uiDevelServerPort + "/"
+	}
 
 	//MainWindow initialization
 	var mainWindow *astilectron.Window
@@ -85,8 +133,11 @@ func runUI() {
 	app.Wait()
 }
 
-func initFlags() {
-	restServerPort = flag.String("restServerPort", "8080", "RestServerPort to use")
+func setUIHandleStaticFiles(router *mux.Router) {
+	uiPrefix := "/"
+	urlGui = host + *uiServerPort + uiPrefix
 
-	flag.Parse()
+	router.PathPrefix(uiPrefix).Handler(
+		http.StripPrefix(uiPrefix, http.FileServer(http.Dir("./front-devel-react/dist"))),
+	)
 }
